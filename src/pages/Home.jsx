@@ -1,14 +1,114 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 const Home = () => {
+  const items = useSelector((state) => state.products.items);
+  console.log(items);
+
   return (
     <div>
-      <header className="bg-amber-300 text-blue-800 text-2xl">
-        <h1>Hello this is home</h1>
-      </header>
-      <Link to="/shop">
-        <button className="bg-red-500 text-blue-800 text-xl">Shop</button>
-      </Link>
+      <section className="max-w-7xl mx-auto py-24 px-4 lg:px-8">
+        <div className="">
+          <div className="bg-black rounded-lg text-white px-10 py-32 md:py-48">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 ">ADIGA eAPP</h1>
+            <p className="text-gray-300 text-lg mb-8 max-w-xl">
+              High-performance apparel for the modern lifestyle. Shop our latest
+              collection.
+            </p>
+            <button className="rounded-[20px] font-bold bg-white text-black px-7 py-3 ">
+              Shop now
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto py-24 px-4 lg:px-8">
+        <div className="mb-9">
+          <h1 className="text-2xl font-bold">Featured Products</h1>
+        </div>
+        <div className="grid grid-cols-1 gap-6 ">
+          {items && items.length && items.length > 0
+            ? items.map((item, i) => {
+                if (i < 6) {
+                  return (
+                    <div className="mb-1">
+                      <Link to={`product/${item.id}`}>
+                        <div className="aspect-square bg-black rounded-lg mb-3">
+                          <img src={item.images[0]} alt="" />
+                        </div>
+                        <div>
+                          <h1 className="truncate text-ellipsis w-[180px] font-semibold">
+                            {item.title}
+                          </h1>
+                          <p className="text-gray-600 text-[15px] mb-1">
+                            {item.category}
+                          </p>
+                          <p className="font-semibold">${item.price}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                }
+              })
+            : null}
+        </div>
+      </section>
+      <section className="py-24 px-4 lg:px8 max-w-7xl mx-auto">
+        <div className="grid gap-7">
+          <div className="bg-black text-white py-24 px-8 rounded-lg">
+            <h1 className="font-bold text-3xl mb-3">Makeup</h1>
+            <p className="text-gray-300 mb-6">Flawless Beauty Revolution</p>
+            <p className="underline">Shop Makeups.</p>
+          </div>
+          <div className="bg-black text-white py-24 px-8 rounded-lg">
+            <h1 className="font-bold text-3xl mb-3">Perfume</h1>
+            <p className="text-gray-300 mb-6">
+              Unforgettable Scent Experience{" "}
+            </p>
+            <p className="underline">Shop Perfumes.</p>
+          </div>
+        </div>
+      </section>
+      <footer className="px-4 py-4 border-t-gray-300 border-t">
+        <div className="max-w-7xl">
+          <div className="grid gap-5">
+            <div>
+              <h1 className="font-semibold mb-3">ADIGA</h1>
+              <p className="text-gray-500 text-[15px]">
+                A simple app for your needs
+              </p>
+            </div>
+            <div>
+              <h1 className="font-semibold mb-3">Shop</h1>
+              <ul className="grid gap-2">
+                <li className="text-gray-500 text-[15px]">All Products</li>
+                <li className="text-gray-500 text-[15px]">Apparel</li>
+                <li className="text-gray-500 text-[15px]">Accessories</li>
+              </ul>
+            </div>
+            <div>
+              <h1 className="font-semibold mb-3">Company</h1>
+              <ul className="grid gap-2">
+                <li className="text-gray-500 text-[15px]">About</li>
+                <li className="text-gray-500 text-[15px]">Contact</li>
+                <li className="text-gray-500 text-[15px]">Careers</li>
+              </ul>
+            </div>
+            <div>
+              <h1 className="font-semibold mb-3">Legal</h1>
+              <ul className="grid gap-2">
+                <li className="text-gray-500 text-[15px]">Privacy</li>
+                <li className="text-gray-500 text-[15px]">Terms</li>
+                <li className="text-gray-500 text-[15px]">Returns</li>
+              </ul>
+            </div>
+          </div>
+          <div className="max-w-7xl border-t-gray-300 border-t mt-10 px-4 py-10 flex justify-center items-center">
+            <p className="text-gray-500 text-[15px]">
+              @ 2025 ADIGA, inc. No rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

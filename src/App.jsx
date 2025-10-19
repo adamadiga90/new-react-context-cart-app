@@ -11,11 +11,7 @@ function App() {
   const { items, isSearch, loading } = useSelector((state) => state.products);
   const [isFalse, setIsFalse] = useState(false);
 
-  console.log(fetchProducts());
-  console.log(items);
-
   useEffect(() => {
-    console.log(isSearch);
     dispatch(fetchProducts());
   }, [dispatch]);
 

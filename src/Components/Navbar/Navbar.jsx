@@ -16,17 +16,17 @@ const Navbar = () => {
               <X />
             </button>
           </div>
-          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[3px] after:w-[95%] after:bottom-[0] after:left-[0] after:absolute">
+          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[2px] after:w-[95%] after:bottom-[0] after:left-[0] after:absolute">
             <Link className="group " to="/shop">
               <button className="">All</button>
             </Link>
           </div>
-          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[3px] after:w-[95%] after:bottom-[0] after:left-[0] after:absolute">
+          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[2px] after:w-[90%] after:bottom-[0] after:left-[0] after:absolute">
             <Link className="group " to="/shop">
               <button className=" ">Category</button>
             </Link>
           </div>
-          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[3px] after:w-[95%] after:bottom-[0] after:left-[0] after:absolute">
+          <div className="py-[24px] px-8 flex items-center relative after:content-[''] after:bg-black after:h-[2px] after:w-[85%] after:bottom-[0] after:left-[0] after:absolute">
             <Link className="group " to="/shop">
               <button className=" ">Contact us</button>
             </Link>
@@ -44,7 +44,9 @@ const Navbar = () => {
             >
               <Menu />
             </button>
-            <h1 className="font-bold text-2xl">ADIGA</h1>
+            <Link to="/">
+              <h1 className="font-bold text-2xl">ADIGA</h1>
+            </Link>
           </div>
           <div className="lg:flex gap-2 hidden ">
             <Link className="group " to="/shop">
