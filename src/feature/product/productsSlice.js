@@ -1,25 +1,32 @@
-// https://dummyjson.com/products
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchProducts = createAsyncThunk(
-  "product/fetchProducts",
-  async ({ limit, skip, search }) => {
-    const url = search?.isSearch
-      ? `https://dummyjson.com/products/search?q=${search.name}`
-      : `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+  "products/fetchProducts",
+  async (_, { getState }) => {
+    const state = getState();
+    const { isSearch, searchParam, limit } = state.products;
+    let url;
+    if (isSearch) {
+      url = `https://dummyjson.com/products/search?q=${searchParam}`;
+    }
+    if (!isSearch) {
+      url = `https://dummyjson.com/products?limit=${limit}&skip=0`;
+    }
+
     const response = await fetch(url);
     const data = await response.json();
-    return data.products;
+    return data;
   }
 );
-
-export const productSlice = createSlice({
-  name: "product",
+const productsSlice = createSlice({
+  name: "products",
   initialState: {
-    products: [],
+    items: [],
     loading: false,
     error: null,
+    isSearch: false,
+    searchParam: "",
+    limit: 24,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -30,7 +37,7 @@ export const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload;
+        state.items = action.payload.products;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
@@ -38,4 +45,5 @@ export const productSlice = createSlice({
       });
   },
 });
-export default productSlice.reducer;
+
+export default productsSlice.reducer;
