@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Minus, Plus, Star } from "lucide-react";
+import { Minus, Plus, ShoppingBasket, Star } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../feature/cart/cartSlice";
 
@@ -52,9 +52,9 @@ const ProductElement = ({ productInfo }) => {
           {!inCart ? (
             <button
               onClick={() => dispatch(addItem(productInfo))}
-              className="bg-black  text-white border-4 border-black font-semibold  text-[14px] transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
+              className="bg-black text-white border-4 border-black font-semibold  text-[14px] transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
             >
-              <Plus size={40} />
+              <ShoppingBasket size={40} />
             </button>
           ) : (
             <button

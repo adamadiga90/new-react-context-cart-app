@@ -2,10 +2,13 @@ import { Menu, Search, ShoppingCart, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [showSideBar, setShowSideBar] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
+  const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +107,14 @@ const Navbar = () => {
             </div>
             <div className="flex gap-4">
               <Search className="lg:w-[40px] lg:h-[40px]" />
-              <ShoppingCart className="lg:w-[40px] lg:h-[40px]" />
+              <div className="relative text-center">
+                {cartItems.length > 0 ? (
+                  <span className="absolute h-4 w-4 text-[10px] font-semibold bg-black text-white rounded-full top-[-4px] right-[-8px]">
+                    {cartItems.length}
+                  </span>
+                ) : null}
+                <ShoppingCart className="lg:w-[40px] lg:h-[40px]" />
+              </div>
             </div>
           </div>
         </div>
