@@ -3,21 +3,24 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router";
 const Home = () => {
   const items = useSelector((state) => state.products.items);
-  console.log(items);
 
   return (
     <div>
       <section className="max-w-7xl mx-auto py-24 px-4 lg:px-8">
         <div className="">
           <div className="bg-black rounded-lg text-white px-10 py-32 md:py-48">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 ">ADIGA eAPP</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
+              ADIGA eSHOP
+            </h1>
             <p className="text-gray-300 text-lg mb-8 max-w-xl">
               High-performance apparel for the modern lifestyle. Shop our latest
               collection.
             </p>
-            <button className="rounded-[20px] font-bold bg-white text-black px-7 py-3 ">
-              Shop now
-            </button>
+            <Link to="/shop">
+              <button className="rounded-[20px] font-bold bg-white text-black px-7 py-3 ">
+                Shop now
+              </button>
+            </Link>
           </div>
         </div>
       </section>
