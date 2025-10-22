@@ -5,7 +5,21 @@ import { theData } from "../../theProducts";
 
 const Shop = () => {
   const items = useSelector((state) => state.products.items);
+  const cartItems = useSelector((state) => state.cart.items);
+
   // console.log(Math.round(items[0].id));
+  console.log(cartItems);
+
+  let productsTest = [
+    { name: "Phon", id: 1 },
+    { name: "MakeUp", id: 2 },
+    { name: "Slave", id: 3 },
+    { name: "Slave2", id: 4 },
+    { name: "Slave3", id: 5 },
+    { name: "Slave4", id: 6 },
+  ];
+
+  let theProduct = { name: "Slave4", id: 22 };
 
   return (
     <div>
@@ -17,10 +31,11 @@ const Shop = () => {
       {/* {items && items.length && items.length > 0 ? ( */}
       {theData ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 px-4 gap-4">
-          <ProductElement productInfo={theData.products[0]} />
-          <ProductElement productInfo={theData.products[1]} />
-          <ProductElement productInfo={theData.products[2]} />
-          <ProductElement productInfo={theData.products[3]} />
+          {items && items.length && items.length > 0 ? (
+            items.map((item) => <ProductElement productInfo={item} />)
+          ) : (
+            <span>Loading...</span>
+          )}
         </div>
       ) : (
         <h1>Sorry, no products to show...</h1>
