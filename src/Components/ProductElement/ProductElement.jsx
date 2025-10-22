@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Star } from "lucide-react";
+import { Minus, Plus, Star } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../feature/cart/cartSlice";
 
@@ -25,7 +25,7 @@ const ProductElement = ({ productInfo }) => {
       <div className="flex items-center justify-between">
         <div className="flex gap-4">
           <div className="w-30 aspect-square bg-black ">
-            <img src={productInfo.images[0]} alt="" />
+            <img className="w-auto" src={productInfo.images[0]} alt="" />
           </div>
           <div className="py-2">
             <h1 className="font-semibold text-[17px]">
@@ -48,20 +48,20 @@ const ProductElement = ({ productInfo }) => {
             </h2>
           </div>
         </div>
-        <div className="px-2 flex items-center justify-center cursor-pointer">
+        <div className="px-2 flex items-center justify-center cursor-pointer w-[33%]">
           {!inCart ? (
             <button
               onClick={() => dispatch(addItem(productInfo))}
-              className="bg-black text-white font-semibold px-2 py-2 transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
+              className="bg-black  text-white border-4 border-black font-semibold  text-[14px] transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
             >
-              Add to cart
+              <Plus size={40} />
             </button>
           ) : (
             <button
               onClick={() => dispatch(removeItem(productInfo))}
-              className="bg-black text-white font-semibold px-2 py-2 transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
+              className="bg-white text-black border-4 border-black font-semibold  transition-all duration-300 hover:bg-white hover:text-black  hover:border-black hover:px-1 hover:py-1 "
             >
-              Remove From Cart
+              <Minus size={40} />
             </button>
           )}
         </div>
