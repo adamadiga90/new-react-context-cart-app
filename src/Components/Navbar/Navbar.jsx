@@ -8,7 +8,6 @@ const Navbar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
   const cartItems = useSelector((state) => state.cart.items);
-  console.log(cartItems);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,17 +41,17 @@ const Navbar = () => {
         {/* <div className={`fixed inset-0 z-50 ${showSideBar ? 'pointer-events-auto' : 'pointer-events-none'}`}> */}
 
         <div
-          className={`absolute inset-0  bg-black transition-opacity duration-300 ease-in-out ${
+          className={`absolute inset-0  bg-black transition-opacity duration-300 ease-in-out lg:hidden ${
             showSideBar ? "opacity-50" : "opacity-0"
           }`}
           onClick={() => setShowSideBar(false)}
         />
         <div
-          className={`absolute h-[100vh] w-[60%] z-[200] bg-gray-200 transition-transform ease-in-out duration-300 top-[0] ${
+          className={`md:hidden absolute h-[100vh] w-[60%] z-[200] bg-gray-200 transition-transform ease-in-out duration-300 top-[0] ${
             showSideBar ? "translate-x-0" : "-translate-x-100"
           }`}
         >
-          <div className="py-[24px] z-10 px-8 border-b-black border-b-2 flex items-center">
+          <div className="lg:hidden py-[24px] z-10 px-8 border-b-black border-b-2 flex items-center">
             <button onClick={() => setShowSideBar(false)}>
               <X />
             </button>
@@ -113,7 +112,9 @@ const Navbar = () => {
                     {cartItems.length}
                   </span>
                 ) : null}
-                <ShoppingCart className="lg:w-[40px] lg:h-[40px]" />
+                <Link to="/cart">
+                  <ShoppingCart className="lg:w-[40px] lg:h-[40px]" />
+                </Link>
               </div>
             </div>
           </div>

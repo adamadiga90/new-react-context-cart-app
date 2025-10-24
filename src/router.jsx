@@ -3,6 +3,7 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Shop from "./pages/Shop.jsx";
 import Test from "./pages/Test.jsx";
+import Cart from "./pages/Cart.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

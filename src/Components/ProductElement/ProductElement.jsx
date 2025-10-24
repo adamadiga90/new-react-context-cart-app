@@ -25,10 +25,17 @@ const ProductElement = ({ productInfo }) => {
       <div className="flex items-center justify-between">
         <div className="flex gap-4">
           <div className="w-30 aspect-square bg-black ">
-            <img className="w-auto" src={productInfo.images[0]} alt="" />
+            <img
+              className="w-full h-full object-cover2"
+              src={productInfo.images[0]}
+              alt={productInfo.title}
+              onError={(e) =>
+                (e.target.src = "https://via.placeholder.com/150")
+              }
+            />
           </div>
           <div className="py-2">
-            <h1 className="font-semibold text-[17px]">
+            <h1 className="font-semibold text-[17px] line-clamp-2">
               {productInfo.title.split(" ").splice(0, 2).join(" ")}
             </h1>
             <p className="text-[15px] text-gray-600 mt-2">
@@ -48,18 +55,19 @@ const ProductElement = ({ productInfo }) => {
             </h2>
           </div>
         </div>
-        <div className="px-2 flex items-center justify-center cursor-pointer w-[33%]">
+        <div className="px-2 flex items-center justify-center cursor-pointer ">
           {!inCart ? (
             <button
               onClick={() => dispatch(addItem(productInfo))}
-              className="bg-black text-white border-4 border-black font-semibold  text-[14px] transition-all duration-300 hover:bg-white hover:text-black border-3 hover:border-black hover:px-1 hover:py-1 "
+              className="bg-black cursor-pointer text-white border-4 border-black font-semibold  text-[14px] transition-all duration-300 hover:bg-white hover:text-black hover:border-black hover:px-1 hover:py-1 "
+              aria-label={`Add ${productInfo.title} to cart`}
             >
               <ShoppingBasket size={40} />
             </button>
           ) : (
             <button
               onClick={() => dispatch(removeItem(productInfo))}
-              className="bg-white text-black border-4 border-black font-semibold  transition-all duration-300 hover:bg-white hover:text-black  hover:border-black hover:px-1 hover:py-1 "
+              className="bg-red-500 cursor-pointer text-black border-4 border-black font-semibold  transition-all duration-300 hover:bg-red-600 hover:text-black  hover:border-black hover:px-1 hover:py-1 "
             >
               <Minus size={40} />
             </button>
