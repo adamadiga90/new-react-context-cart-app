@@ -17,10 +17,10 @@ const Shop = () => {
       if (window.scrollY + 50 > theEndScroll && !loading) {
         dispatch(updateLimit());
         dispatch(fetchProducts());
-        console.log(`window.scroll = ${window.scrollY}`);
-        console.log(`theEndScroll = ${theEndScroll}`);
+        // console.log(`window.scroll = ${window.scrollY}`);
+        // console.log(`theEndScroll = ${theEndScroll}`);
 
-        console.log("HELLO");
+        // console.log("HELLO");
       }
     }
 
@@ -58,6 +58,11 @@ const Shop = () => {
       ) : (
         <h1>Sorry, no products to show...</h1>
       )}
+      {items && items.length && items.length > 0 && loading ? (
+        <div className="mb-20 px-20 flex justify-center items-center mt-1">
+          <Loader className="spinning-loader" size={60} />
+        </div>
+      ) : null}
     </div>
   );
 };
