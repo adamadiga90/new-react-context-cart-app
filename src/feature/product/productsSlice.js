@@ -28,7 +28,11 @@ const productsSlice = createSlice({
     searchParam: "",
     limit: 24,
   },
-  reducers: {},
+  reducers: {
+    updateLimit: (state) => {
+      state.limit = state.limit + 6;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -47,3 +51,4 @@ const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
+export const { updateLimit } = productsSlice.actions;

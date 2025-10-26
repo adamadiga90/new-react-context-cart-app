@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductElement from "../Components/ProductElement/ProductElement";
+import { Loader } from "lucide-react";
+import "./shop/Shop.css";
+import { fetchProducts, updateLimit } from "../feature/product/productsSlice";
 
 const Shop = () => {
   const items = useSelector((state) => state.products.items);
   const cartItems = useSelector((state) => state.cart.items);
-
-  // console.log(Math.round(items[0].id));
-  const theHeight = window.innerHeight;
-  const theHeight2 = document.documentElement.scrollHeight;
-  // console.log(theHeight);
-  // console.log(theHeight2 - theHeight);
-  // console.log(3810);
-
+  const loading = useSelector((state) => state.products.loading);
+  const dispatch = useDispatch();
   useEffect(() => {
     function handleScroll() {
       let theEndScroll =
         document.documentElement.scrollHeight - window.innerHeight;
-      if (window.scrollY - 100 === theEndScroll) {
+      if (window.scrollY + 50 > theEndScroll && !loading) {
+        dispatch(updateLimit());
+        dispatch(fetchProducts());
         console.log(`window.scroll = ${window.scrollY}`);
         console.log(`theEndScroll = ${theEndScroll}`);
 
@@ -51,6 +50,10 @@ const Shop = () => {
               <span>Loading...</span>
             )}
           </div>
+        </div>
+      ) : loading ? (
+        <div className="flex justify-center items-center">
+          <Loader className="spinning-loader" size={60} />
         </div>
       ) : (
         <h1>Sorry, no products to show...</h1>
