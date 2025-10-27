@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Minus, Plus, ShoppingBasket, Star } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../feature/cart/cartSlice";
+import { Link } from "react-router";
 
 const ProductElement = ({ productInfo }) => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -23,38 +24,40 @@ const ProductElement = ({ productInfo }) => {
   return (
     <div className="border-[3px] border-black  ">
       <div className="flex items-center justify-between">
-        <div className="flex gap-4">
-          <div className="w-30 aspect-square bg-black ">
-            <img
-              className="w-full h-full object-cover2"
-              src={productInfo.images[0]}
-              alt={productInfo.title}
-              onError={(e) =>
-                (e.target.src = "https://via.placeholder.com/150")
-              }
-            />
-          </div>
-          <div className="py-2">
-            <h1 className="font-semibold text-[17px] line-clamp-2">
-              {productInfo.title.split(" ").splice(0, 2).join(" ")}
-            </h1>
-            <p className="text-[15px] text-gray-600 mt-2">
-              {productInfo.category}
-            </p>
-            <div className="flex mt-2">
-              {stars.map((item) =>
-                item <= Math.round(productInfo.rating) ? (
-                  <Star key={item} size={15} fill="black" />
-                ) : (
-                  <Star key={item} size={15} />
-                )
-              )}
+        <Link to={`/product/${productInfo.id}`}>
+          <div className="flex gap-4">
+            <div className="w-30 aspect-square bg-black ">
+              <img
+                className="w-full h-full object-cover2"
+                src={productInfo.images[0]}
+                alt={productInfo.title}
+                onError={(e) =>
+                  (e.target.src = "https://via.placeholder.com/150")
+                }
+              />
             </div>
-            <h2 className="font-semibold text-[16px] mt-3">
-              ${productInfo.price}
-            </h2>
+            <div className="py-2">
+              <h1 className="font-semibold text-[17px] line-clamp-2">
+                {productInfo.title.split(" ").splice(0, 2).join(" ")}
+              </h1>
+              <p className="text-[15px] text-gray-600 mt-2">
+                {productInfo.category}
+              </p>
+              <div className="flex mt-2">
+                {stars.map((item) =>
+                  item <= Math.round(productInfo.rating) ? (
+                    <Star key={item} size={15} fill="black" />
+                  ) : (
+                    <Star key={item} size={15} />
+                  )
+                )}
+              </div>
+              <h2 className="font-semibold text-[16px] mt-3">
+                ${productInfo.price}
+              </h2>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="px-2 flex items-center justify-center cursor-pointer ">
           {!inCart ? (
             <button

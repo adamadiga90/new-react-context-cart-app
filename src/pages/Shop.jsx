@@ -4,6 +4,7 @@ import ProductElement from "../Components/ProductElement/ProductElement";
 import { Loader } from "lucide-react";
 import "./shop/Shop.css";
 import { fetchProducts, updateLimit } from "../feature/product/productsSlice";
+import { Link } from "react-router";
 
 const Shop = () => {
   const items = useSelector((state) => state.products.items);

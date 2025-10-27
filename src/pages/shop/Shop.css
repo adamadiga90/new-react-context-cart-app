@@ -2,10 +2,14 @@
   animation: rotate360 2s linear infinite;
 }
 @keyframes rotate360 {
-  from {
+  0% {
     transform: rotate(0deg);
+    opacity: 0;
   }
-  to {
+  25% {
+    opacity: 1;
+  }
+  100% {
     transform: rotate(359deg); /* or 360deg */
   }
 }
